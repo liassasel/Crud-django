@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import TaskForm
+from .models import Task
 
 
 # Create your views here.
@@ -36,7 +37,14 @@ def signup(request):
                 })
 
 def tasks(request):
+    tasks = Task.objects.all()
     
+    return render(request, 'tasks.html', {
+        'tasks': tasks
+    })
+    
+
+def create_task(request):
     if request.method == 'GET':
         return render(request, 'create_task.html', {
         'form': TaskForm
@@ -54,11 +62,6 @@ def tasks(request):
                 'error': 'Please provide valid data'
             })
     
-
-def create_task(request):
-    return render(request, 'create_task.html', {
-        'form': TaskForm
-    })
 
 def signout(request):
     logout(request)
