@@ -98,6 +98,7 @@ def task_detail(request, task_id):
     else:
         try:
             task = get_object_or_404(Task, pk=task_id, user=request.user)
+            form = TaskForm(request.POST, instance=task)
             form.save()
             return redirect('tasks')
         except ValueError:
