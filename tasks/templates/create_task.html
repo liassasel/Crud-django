@@ -6,13 +6,15 @@
     {{error}}
 
 
-    <form action="/tasks/create" method="POST"></form>
-    {% csrf_token %}
+    <form action="/tasks/create/" method="POST">
+        {% csrf_token %}
 
-    {{form}}
+        {{form}}
+    
+        <button>
+            Save
+        </button>
+    </form>
 
-    <button>
-        Save
-    </button>
 
 {% endblock %}
