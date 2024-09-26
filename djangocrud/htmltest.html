@@ -1,19 +1,50 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django CRUD Application</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'output.css' %}">
+</head>
+<body>
 
-{% block content %}
-    <h1>Task Detail</h1>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            {% if user.is_authenticated %}
+            <li> 
+                <a href="/tasks">Tasks Pending</a>
+            </li>
+            <li> 
+                <a href="/tasks_completed/">Tasks Completed</a>
+            </li>
+            <li> 
+                <a href="/tasks/create/">Create task</a>
+            </li>
+            <li>
+                <a href="/logout">Logout</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="/signup">Signup</a>
+            </li>
+            <li> 
+                <a href="/signin">Signinn</a>
+            </li>
+            {% endif %}
+        
 
-    <h1>{{task.title}}</h1>
+        </ul>
+        </ul>
+    </nav>
+    
+    {% block content %}
 
+    {% endblock %}
 
-    <form method="POST">
-        {{ csrf_token }}
-        {{form}}
-
-        <button>
-            Update
-        </button>
-
-    </form>
-
-{% endblock %}
+</body>
+</html>
