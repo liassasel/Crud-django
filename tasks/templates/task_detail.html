@@ -15,7 +15,7 @@
   </button>
 </form>
 
-{% comment %} <form action="{% url 'complete_task' task.id %}" method="POST">
+<form action="{% url 'complete_task' task.id %}" method="POST">
   {% csrf_token %}
   <button>
     complete
@@ -27,6 +27,6 @@
   <button>
     delete
   </button>
-</form> {% endcomment %}
+</form>
 
 {% endblock %}
